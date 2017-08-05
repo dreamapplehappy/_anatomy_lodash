@@ -2,15 +2,6 @@
 
 Lodash的版本是`4.17.4`
 
-```
-.
-├── .internal
-    ├── ...
-├── ...
-
-```
-
-
 MIT License
 
 Copyright (c) [2017] [@dreamapplehappy](https://dreamapple.me/)
