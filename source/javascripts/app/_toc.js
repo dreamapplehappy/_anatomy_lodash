@@ -37,7 +37,11 @@
       $toc.find(tocLinkSelector).each(function() {
         var targetId = $(this).attr('href');
         if (targetId[0] === "#") {
-          headerHeights[targetId] = $(targetId).offset().top;
+          // fix the undefined error
+          if($(targetId).offset()) {
+              headerHeights[targetId] = $(targetId).offset().top;
+          }
+          // headerHeights[targetId] = $(targetId).offset().top;
         }
       });
     };
