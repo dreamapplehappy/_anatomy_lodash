@@ -2,9 +2,6 @@
 title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
   - javascript
 
 toc_footers:
@@ -17,13 +14,90 @@ includes:
 search: true
 ---
 
-# 介绍
+# 前言
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+这个文档主要用来讲解[Lodash](https://github.com/lodash/lodash)的源码，我们从零开始构建一个完整的Lodash，项目的地址是[sharp-lodash](https://github.com/dreamapplehappy/sharp-lodash)
+然后有什么不足的地方大家可以在这里提出来[Issues](https://github.com/dreamapplehappy/sharp-lodash/issues)，
+阅读源码的版本是`4.17.4`
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+# Array(数组)
+
+## _.slice 
+
+```javascript
+import slice from './slice.js'
+
+/**
+ * Creates an array of elements split into groups the length of `size`.
+ * If `array` can't be split evenly, the final chunk will be the remaining
+ * elements.
+ *
+ * @since 3.0.0
+ * @category Array
+ * @param {Array} array The array to process.
+ * @param {number} [size=1] The length of each chunk
+ * @returns {Array} Returns the new array of chunks.
+ * @example
+ *
+ * chunk(['a', 'b', 'c', 'd'], 2)
+ * // => [['a', 'b'], ['c', 'd']]
+ *
+ * chunk(['a', 'b', 'c', 'd'], 3)
+ * // => [['a', 'b', 'c'], ['d']]
+ */
+function chunk(array, size) {
+    size = Math.max(size, 0)
+    const length = array == null ? 0 : array.length
+    if (!length || size < 1) {
+        return []
+    }
+    let index = 0
+    let resIndex = 0
+    const result = new Array(Math.ceil(length / size))
+
+    while (index < length) {
+        result[resIndex++] = slice(array, index, (index += size))
+    }
+    return result
+}
+
+export default chunk
+```
+函数内部没有依赖的函数
+
+## _.chunk 
+
+函数内部依赖的函数如下：
+
+函数名字 | 源码 | 函数简介
+--------- | ----------- | -----------
+slice | [slice.js](https://github.com/lodash/lodash/blob/master/slice.js) | xxx
+
+
+# Collection(集合)
+
+# Date(日期)
+
+# Function(函数)
+
+# Lang(语言)
+
+# Math(数学)
+
+# Number(数字)
+
+# Object(对象)
+
+# Seq
+
+# String(字符串)
+
+# Util(工具)
+
+# Properties(特性)
+
+# Methods(方法)
 
 # Authentication
 
