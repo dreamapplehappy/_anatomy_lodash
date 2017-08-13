@@ -18,6 +18,7 @@ search: true
 
 这个文档主要用来讲解[Lodash](https://github.com/lodash/lodash)的源码，我们从零开始构建一个完整的Lodash，项目的地址是[sharp-lodash](https://github.com/dreamapplehappy/sharp-lodash)
 然后有什么不足的地方大家可以在这里提出来[Issues](https://github.com/dreamapplehappy/sharp-lodash/issues)，
+关于本网站的问题可以在[_anatomy_lodash](https://github.com/dreamapplehappy/_anatomy_lodash)提出来；
 阅读源码的版本是`4.17.4`
 
 
@@ -26,43 +27,48 @@ search: true
 ## _.slice 
 
 ```javascript
-import slice from './slice.js'
-
 /**
- * Creates an array of elements split into groups the length of `size`.
- * If `array` can't be split evenly, the final chunk will be the remaining
- * elements.
+ * Creates a slice of `array` from `start` up to, but not including, `end`.
+ *
+ * **Note:** This method is used instead of
+ * [`Array#slice`](https://mdn.io/Array/slice) to ensure dense arrays are
+ * returned.
  *
  * @since 3.0.0
  * @category Array
- * @param {Array} array The array to process.
- * @param {number} [size=1] The length of each chunk
- * @returns {Array} Returns the new array of chunks.
- * @example
- *
- * chunk(['a', 'b', 'c', 'd'], 2)
- * // => [['a', 'b'], ['c', 'd']]
- *
- * chunk(['a', 'b', 'c', 'd'], 3)
- * // => [['a', 'b', 'c'], ['d']]
+ * @param {Array} array The array to slice.
+ * @param {number} [start=0] The start position.
+ * @param {number} [end=array.length] The end position.
+ * @returns {Array} Returns the slice of `array`.
  */
-function chunk(array, size) {
-    size = Math.max(size, 0)
-    const length = array == null ? 0 : array.length
-    if (!length || size < 1) {
-        return []
-    }
-    let index = 0
-    let resIndex = 0
-    const result = new Array(Math.ceil(length / size))
+function slice(array, start, end) {
+  //   
+  let length = array == null ? 0 : array.length
+  if (!length) {
+    return []
+  }
+  start = start == null ? 0 : start
+  end = end === undefined ? length : end
 
-    while (index < length) {
-        result[resIndex++] = slice(array, index, (index += size))
-    }
-    return result
+  if (start < 0) {
+    start = -start > length ? 0 : (length + start)
+  }
+  end = end > length ? length : end
+  if (end < 0) {
+    end += length
+  }
+  length = start > end ? 0 : ((end - start) >>> 0)
+  start >>>= 0
+
+  let index = -1
+  const result = new Array(length)
+  while (++index < length) {
+    result[index] = array[index + start]
+  }
+  return result
 }
 
-export default chunk
+export default slice
 ```
 函数内部没有依赖的函数
 
