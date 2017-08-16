@@ -6,6 +6,12 @@
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>API Reference</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
+    <link rel="manifest" href="/favicons/manifest.json">
+    <link rel="mask-icon" href="favicons/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="theme-color" content="#ffffff">
 
     <style>
       .highlight table td { padding: 5px; }
@@ -201,7 +207,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;javascript&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -211,9 +217,6 @@
     <div class="toc-wrapper">
       <img src="images/logo.png" class="logo" alt="Logo" />
         <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
               <a href="#" data-language-name="javascript">javascript</a>
         </div>
         <div class="search">
@@ -222,7 +225,54 @@
         <ul class="search-results"></ul>
       <div id="toc" class="toc-list-h1">
           <li>
-            <a href="#" class="toc-h1 toc-link" data-title="介绍">介绍</a>
+            <a href="#" class="toc-h1 toc-link" data-title="前言">前言</a>
+          </li>
+          <li>
+            <a href="#array" class="toc-h1 toc-link" data-title="Array(数组)">Array(数组)</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#_-slice" class="toc-h2 toc-link" data-title="Array(数组)">_.slice</a>
+                  </li>
+                  <li>
+                    <a href="#_-chunk" class="toc-h2 toc-link" data-title="Array(数组)">_.chunk</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#collection" class="toc-h1 toc-link" data-title="Collection(集合)">Collection(集合)</a>
+          </li>
+          <li>
+            <a href="#date" class="toc-h1 toc-link" data-title="Date(日期)">Date(日期)</a>
+          </li>
+          <li>
+            <a href="#function" class="toc-h1 toc-link" data-title="Function(函数)">Function(函数)</a>
+          </li>
+          <li>
+            <a href="#lang" class="toc-h1 toc-link" data-title="Lang(语言)">Lang(语言)</a>
+          </li>
+          <li>
+            <a href="#math" class="toc-h1 toc-link" data-title="Math(数学)">Math(数学)</a>
+          </li>
+          <li>
+            <a href="#number" class="toc-h1 toc-link" data-title="Number(数字)">Number(数字)</a>
+          </li>
+          <li>
+            <a href="#object" class="toc-h1 toc-link" data-title="Object(对象)">Object(对象)</a>
+          </li>
+          <li>
+            <a href="#seq" class="toc-h1 toc-link" data-title="Seq">Seq</a>
+          </li>
+          <li>
+            <a href="#string" class="toc-h1 toc-link" data-title="String(字符串)">String(字符串)</a>
+          </li>
+          <li>
+            <a href="#util" class="toc-h1 toc-link" data-title="Util(工具)">Util(工具)</a>
+          </li>
+          <li>
+            <a href="#properties" class="toc-h1 toc-link" data-title="Properties(特性)">Properties(特性)</a>
+          </li>
+          <li>
+            <a href="#methods" class="toc-h1 toc-link" data-title="Methods(方法)">Methods(方法)</a>
           </li>
           <li>
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
@@ -253,13 +303,72 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id=''>介绍</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+        <h1 id=''>前言</h1>
+<p>这个文档主要用来讲解<a href="https://github.com/lodash/lodash">Lodash</a>的源码，我们从零开始构建一个完整的Lodash，项目的地址是<a href="https://github.com/dreamapplehappy/sharp-lodash">sharp-lodash</a>
+然后有什么不足的地方大家可以在这里提出来<a href="https://github.com/dreamapplehappy/sharp-lodash/issues">Issues</a>，
+关于本网站的问题可以在<a href="https://github.com/dreamapplehappy/_anatomy_lodash">_anatomy_lodash</a>提出来；
+阅读源码的版本是<code>4.17.4</code></p>
+<h1 id='array'>Array(数组)</h1><h2 id='_-slice'>_.slice</h2><pre class="highlight javascript tab-javascript"><code><span class="cm">/**
+ * Creates a slice of `array` from `start` up to, but not including, `end`.
+ *
+ * **Note:** This method is used instead of
+ * [`Array#slice`](https://mdn.io/Array/slice) to ensure dense arrays are
+ * returned.
+ *
+ * @since 3.0.0
+ * @category Array
+ * @param {Array} array The array to slice.
+ * @param {number} [start=0] The start position.
+ * @param {number} [end=array.length] The end position.
+ * @returns {Array} Returns the slice of `array`.
+ */</span>
+<span class="kd">function</span> <span class="nx">slice</span><span class="p">(</span><span class="nx">array</span><span class="p">,</span> <span class="nx">start</span><span class="p">,</span> <span class="nx">end</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">//   </span>
+  <span class="kd">let</span> <span class="nx">length</span> <span class="o">=</span> <span class="nx">array</span> <span class="o">==</span> <span class="kc">null</span> <span class="p">?</span> <span class="mi">0</span> <span class="p">:</span> <span class="nx">array</span><span class="p">.</span><span class="nx">length</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">[]</span>
+  <span class="p">}</span>
+  <span class="nx">start</span> <span class="o">=</span> <span class="nx">start</span> <span class="o">==</span> <span class="kc">null</span> <span class="p">?</span> <span class="mi">0</span> <span class="p">:</span> <span class="nx">start</span>
+  <span class="nx">end</span> <span class="o">=</span> <span class="nx">end</span> <span class="o">===</span> <span class="kc">undefined</span> <span class="p">?</span> <span class="nx">length</span> <span class="p">:</span> <span class="nx">end</span>
 
-<p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">start</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">start</span> <span class="o">=</span> <span class="o">-</span><span class="nx">start</span> <span class="o">&gt;</span> <span class="nx">length</span> <span class="p">?</span> <span class="mi">0</span> <span class="p">:</span> <span class="p">(</span><span class="nx">length</span> <span class="o">+</span> <span class="nx">start</span><span class="p">)</span>
+  <span class="p">}</span>
+  <span class="nx">end</span> <span class="o">=</span> <span class="nx">end</span> <span class="o">&gt;</span> <span class="nx">length</span> <span class="p">?</span> <span class="nx">length</span> <span class="p">:</span> <span class="nx">end</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">end</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">end</span> <span class="o">+=</span> <span class="nx">length</span>
+  <span class="p">}</span>
+  <span class="nx">length</span> <span class="o">=</span> <span class="nx">start</span> <span class="o">&gt;</span> <span class="nx">end</span> <span class="p">?</span> <span class="mi">0</span> <span class="p">:</span> <span class="p">((</span><span class="nx">end</span> <span class="o">-</span> <span class="nx">start</span><span class="p">)</span> <span class="o">&gt;&gt;&gt;</span> <span class="mi">0</span><span class="p">)</span>
+  <span class="nx">start</span> <span class="o">&gt;&gt;&gt;=</span> <span class="mi">0</span>
 
-<p>This example API documentation page was created with <a href="https://github.com/tripit/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
-<h1 id='authentication'>Authentication</h1>
+  <span class="kd">let</span> <span class="nx">index</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+  <span class="kr">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="nx">length</span><span class="p">)</span>
+  <span class="k">while</span> <span class="p">(</span><span class="o">++</span><span class="nx">index</span> <span class="o">&lt;</span> <span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">result</span><span class="p">[</span><span class="nx">index</span><span class="p">]</span> <span class="o">=</span> <span class="nx">array</span><span class="p">[</span><span class="nx">index</span> <span class="o">+</span> <span class="nx">start</span><span class="p">]</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">result</span>
+<span class="p">}</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">slice</span>
+</code></pre>
+<p>函数内部没有依赖的函数</p>
+<h2 id='_-chunk'>_.chunk</h2>
+<p>函数内部依赖的函数如下：</p>
+
+<table><thead>
+<tr>
+<th>函数名字</th>
+<th>源码</th>
+<th>函数简介</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>slice</td>
+<td><a href="https://github.com/lodash/lodash/blob/master/slice.js">slice.js</a></td>
+<td>xxx</td>
+</tr>
+</tbody></table>
+<h1 id='collection'>Collection(集合)</h1><h1 id='date'>Date(日期)</h1><h1 id='function'>Function(函数)</h1><h1 id='lang'>Lang(语言)</h1><h1 id='math'>Math(数学)</h1><h1 id='number'>Number(数字)</h1><h1 id='object'>Object(对象)</h1><h1 id='seq'>Seq</h1><h1 id='string'>String(字符串)</h1><h1 id='util'>Util(工具)</h1><h1 id='properties'>Properties(特性)</h1><h1 id='methods'>Methods(方法)</h1><h1 id='authentication'>Authentication</h1>
 <blockquote>
 <p>To authorize, use this code:</p>
 </blockquote>
@@ -492,9 +601,6 @@ Remember — a happy kitten is an authenticated kitten!
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
                 <a href="#" data-language-name="javascript">javascript</a>
           </div>
       </div>
